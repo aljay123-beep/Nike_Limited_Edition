@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nike Store</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #fff;
+    color: #111;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* NAVBAR */
+.navbar {
+    position: sticky;
+    top: 0;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 30px;
+    border-bottom: 1px solid #eee;
+    z-index: 1000;
+}
+
+/* Logo */
+.logo img {
+    height: 28px;
+}
+
+/* Nav */
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Right side */
+.icons {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+/* Search */
+.search-bar input {
+    border: none;
+    background: #f5f5f5;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    width: 140px;
+    transition: 0.3s ease;
+}
+
+.search-bar input:focus {
+    outline: none;
+    background: #eee;
+    width: 180px;
+}
+
+/* Cart */
+.cart {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.cart img {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+}
+
+.cart span {
+    position: absolute;
+    top: -6px;
+    right: -8px;
+    background: black;
+    color: white;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 50%;
+}
+
+/* Hamburger */
+.hamburger {
+    display: none;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+/* HERO */
+.hero {
+    height: 90vh;
+    background: url('bg.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    position: relative;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+}
+
+.hero div {
+    position: relative;
+    z-index: 1;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 999px;
+    background: black;
+    color: white;
+    cursor: pointer;
+}
+
+/* PRODUCTS */
+.products {
+    padding: 60px 30px;
+}
+
+.products h2 {
+    margin-bottom: 30px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+/* Product Card */
+.product {
+    background: #fff;
+    border-radius: 18px;
+    padding: 15px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.product:hover {
+    transform: translateY(-5px);
+}
+
+/* Circular Image */
+.product img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+    background: #f8f8f8;
+    border-radius: 50%;
+    padding: 20px;
+    transition: transform 0.3s ease;
+}
+
+.product:hover img {
+    transform: scale(1.05);
+}
+
+.product h4 {
+    margin-top: 10px;
+}
+
+.product p {
+    color: gray;
+}
+
+.product button {
+    margin-top: 10px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 999px;
+    background: black;
+    color: white;
+    cursor: pointer;
+}
+
+/* BANNER */
+.banner {
+    margin: 60px 0;
+    padding: 80px 20px;
+    background: #f5f5f5;
+    text-align: center;
+}
+
+/* FOOTER */
+footer {
+    background: #111;
+    color: white;
+    padding: 40px 30px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .nav-links {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: white;
+        flex-direction: column;
+        align-items: center;
+        display: none;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .search-bar input {
+        width: 100px;
+    }
+
+    .logo img {
+        height: 24px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+
+    <!-- Logo -->
+    <div class="logo">
+        <img src="logo.jpg" alt="Logo">
+    </div>
+
+    <!-- Nav -->
+    <div class="nav-links" id="menu">
+        <a href="#">Men</a>
+        <a href="#">Women</a>
+        <a href="#">Kids</a>
+        <a href="#">Sale</a>
+    </div>
+
+    <!-- Right -->
+    <div class="icons">
+
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+        </div>
+
+        <div class="cart">
+            <img src="cart.jpg" alt="Cart">
+            <span id="cartCount">0</span>
+        </div>
+
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+    </div>
+
+</div>
+
+<!-- HERO -->
+<section class="hero">
+    <div>
+        <h1>Limited Collection</h1>
+        <button onclick="scrollToProducts()">Shop Now</button>
+    </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+    <h2>Limited Nike Products</h2>
+
+    <div class="grid">
+
+        <div class="product">
+            <img src="shoe1.jpg">
+            <h4>Nike Dunk High Haze</h4>
+            <p>$1,372.00</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <img src="shoe2.jpg">
+            <h4>Nike Air Mag</h4>
+            <p>$25,000</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <img src="shoe3.jpg">
+            <h4>Louis Vuitton x Nike AF1</h4>
+            <p>$95,561.00</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <img src="shoe4.jpg">
+            <h4>Air Jordan 1 Dior</h4>
+            <p>$5,898.00</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <img src="shoe5.jpg">
+            <h4>KILO47 BENJI</h4>
+            <p>$3,500.00</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <img src="shoe6.jpg">
+            <h4>Nike Dunk Low Denim</h4>
+            <p>$115</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+
+    </div>
+</section>
+
+<!-- BANNER -->
+<section class="banner">
+    <h2>Limited Edition Drop</h2>
+    <p>Don't miss out on exclusive releases</p>
+    <button>Shop Collection</button>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-grid">
+        <div>
+            <h4>About</h4>
+            <p>Company info</p>
+        </div>
+        <div>
+            <h4>Help</h4>
+            <p>Contact</p>
+        </div>
+        <div>
+            <h4>Follow</h4>
+            <p>Instagram</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+function toggleMenu() {
+    document.getElementById("menu").classList.toggle("active");
+}
+
+function scrollToProducts() {
+    document.getElementById("products").scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+let count = 0;
+function addToCart() {
+    count++;
+    document.getElementById("cartCount").innerText = count;
+}
+</script>
+
+</body>
+</html>
